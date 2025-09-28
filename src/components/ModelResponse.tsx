@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Copy, Check, Clock, AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
@@ -108,7 +108,7 @@ export function ModelResponse({
         {response && !error && !isLoading && (
           <div className="prose prose-sm max-w-none text-foreground/90">
             <div className="whitespace-pre-wrap font-mono text-xs leading-relaxed">
-              {parseLatexContent(displayedText)}
+              {useMemo(() => parseLatexContent(displayedText), [displayedText])}
               {isTyping && <span className="animate-pulse">▊</span>}
             </div>
           </div>
