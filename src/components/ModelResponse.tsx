@@ -56,26 +56,26 @@ export function ModelResponse({
 
   return (
     <div className={cn(
-      "h-full transition-all duration-300",
-      isLoading ? "opacity-80" : 
+      "glass-card rounded-xl p-6 border transition-all duration-300 animate-slide-up",
+      isLoading ? "border-secondary/50 shadow-glow-cyan" : 
       error ? "border-destructive/50" : 
-      ""
+      "border-primary/20 hover:border-primary/40"
     )}>
       <div className="flex items-start justify-between mb-4">
         <div>
-          <h4 className="font-bold text-lg">{modelName}</h4>
-          <p className="text-sm text-muted-foreground">{provider}</p>
+          <h3 className="font-semibold text-foreground">{modelName}</h3>
+          <p className="text-xs text-muted-foreground mt-1">{provider}</p>
         </div>
         <div className="flex items-center gap-2">
           {responseTime && (
-            <div className="badge-orange text-xs">
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <Clock className="h-3 w-3" />
               {responseTime.toFixed(2)}s
             </div>
           )}
           {response && (
             <Button
-              variant="outline"
+              variant="ghost"
               size="icon"
               onClick={handleCopy}
               className="h-8 w-8"
@@ -90,10 +90,10 @@ export function ModelResponse({
         </div>
       </div>
 
-      <div className="relative min-h-[120px] bg-secondary/30 rounded-sm border-2 border-border p-4">
+      <div className="relative min-h-[100px]">
         {isLoading && (
           <div className="flex items-center justify-center h-[100px]">
-            <Loader2 className="h-6 w-6 animate-spin text-primary" />
+            <Loader2 className="h-6 w-6 animate-spin text-secondary" />
           </div>
         )}
         
@@ -105,10 +105,10 @@ export function ModelResponse({
         )}
         
         {response && !error && !isLoading && (
-          <div className="prose prose-sm max-w-none">
-            <div className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-foreground">
+          <div className="prose prose-sm max-w-none text-foreground/90">
+            <div className="whitespace-pre-wrap font-mono text-xs leading-relaxed">
               <LatexRenderer text={displayedText} />
-              {isTyping && <span className="text-primary animate-pulse">▊</span>}
+              {isTyping && <span className="animate-pulse">▊</span>}
             </div>
           </div>
         )}

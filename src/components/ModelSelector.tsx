@@ -21,66 +21,68 @@ export function ModelSelector({ models, onToggleModel, onSelectAll, onDeselectAl
   const selectedCount = models.filter(m => m.selected).length;
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
+    <div className="glass-card rounded-xl p-6 border-primary/20 animate-fade-in">
+      <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <div className="inline-block w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-          <h3 className="text-2xl font-bold">Select AI Models</h3>
-          <span className="badge-orange">
-            {selectedCount} selected
+          <Sparkles className="h-5 w-5 text-primary" />
+          <h2 className="text-xl font-semibold text-foreground">AI Models</h2>
+          <span className="text-sm text-muted-foreground ml-2">
+            ({selectedCount} selected)
           </span>
         </div>
         <div className="flex gap-2">
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             onClick={onSelectAll}
+            className="text-xs"
           >
             Select All
           </Button>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             onClick={onDeselectAll}
+            className="text-xs"
           >
             Clear
           </Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {models.map((model) => (
           <button
             key={model.id}
             onClick={() => onToggleModel(model.id)}
             className={cn(
-              "group relative p-4 rounded-sm border-2 transition-all duration-200",
-              "hover:translate-x-[-2px] hover:translate-y-[-2px]",
+              "group relative p-3 rounded-lg border transition-all duration-200",
+              "hover:scale-[1.02] hover:shadow-lg",
               model.selected
-                ? "bg-secondary border-border shadow-brutal hover:shadow-brutal-lg"
-                : "bg-card border-border shadow-brutal-sm hover:shadow-brutal"
+                ? "bg-primary/10 border-primary/50 shadow-glow"
+                : "bg-card/50 border-border/50 hover:border-primary/30"
             )}
           >
             <div className="flex items-start justify-between">
-              <div className="text-left space-y-1">
-                <div className="font-bold text-sm">
+              <div className="text-left">
+                <div className="font-medium text-sm text-foreground">
                   {model.name}
                 </div>
-                <div className="text-xs text-muted-foreground">
+                <div className="text-xs text-muted-foreground mt-1">
                   {model.provider}
                 </div>
-                <div className="text-xs text-muted-foreground">
+                <div className="text-xs text-muted-foreground/70 mt-1">
                   {model.contextLength.toLocaleString()} tokens
                 </div>
               </div>
               <div className={cn(
-                "w-6 h-6 rounded-sm border-2 flex items-center justify-center transition-all",
+                "w-5 h-5 rounded-full border-2 transition-all duration-200",
                 model.selected
-                  ? "bg-primary border-border"
-                  : "bg-card border-border"
+                  ? "bg-primary border-primary"
+                  : "border-muted-foreground/30 group-hover:border-primary/50"
               )}>
                 {model.selected && (
-                  <Check className="w-4 h-4 text-primary-foreground" />
+                  <Check className="w-3 h-3 text-primary-foreground" />
                 )}
               </div>
             </div>

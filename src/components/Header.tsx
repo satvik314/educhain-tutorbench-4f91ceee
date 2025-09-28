@@ -1,62 +1,30 @@
-import { User, ChevronDown, ArrowRight } from "lucide-react";
-import { Button } from "./ui/button";
-import { useState } from "react";
+import { GraduationCap, Activity } from "lucide-react";
 
 export function Header() {
-  const [isTeachersOpen, setIsTeachersOpen] = useState(false);
-
   return (
-    <header className="relative z-20 px-4 py-6">
-      <div className="container mx-auto max-w-7xl">
-        <nav className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold">
-              educhain
-            </a>
-          </div>
-          
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-8">
-            <div className="relative">
-              <button 
-                className="flex items-center gap-1 text-foreground hover:text-primary transition-colors font-medium"
-                onClick={() => setIsTeachersOpen(!isTeachersOpen)}
-              >
-                <User className="h-4 w-4" />
-                For Teachers
-                <ChevronDown className="h-3 w-3" />
-              </button>
-              {isTeachersOpen && (
-                <div className="absolute top-full mt-2 left-0 w-48 bg-card border-2 border-border rounded-sm shadow-brutal p-2">
-                  <a href="#" className="block px-3 py-2 hover:bg-muted rounded-sm">Lesson Plans</a>
-                  <a href="#" className="block px-3 py-2 hover:bg-muted rounded-sm">Quiz Generator</a>
-                  <a href="#" className="block px-3 py-2 hover:bg-muted rounded-sm">Resources</a>
-                </div>
-              )}
-            </div>
-            <a href="#features" className="text-foreground hover:text-primary transition-colors font-medium">
-              Features
-            </a>
-            <a href="/why-pteb" className="text-foreground hover:text-primary transition-colors font-medium">
-              About Us
-            </a>
-            <a href="#contact" className="text-foreground hover:text-primary transition-colors font-medium">
-              Contact
-            </a>
-          </div>
-          
-          {/* CTA and User */}
-          <div className="flex items-center gap-4">
-            <Button variant="brutal" size="default">
-              Try it Now
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <div className="h-10 w-10 rounded-full bg-muted border-2 border-border flex items-center justify-center">
-              <User className="h-5 w-5" />
+    <header className="relative z-10 mb-8 animate-fade-in">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-primary blur-xl opacity-50 animate-pulse"></div>
+            <div className="relative bg-gradient-primary p-3 rounded-xl shadow-glow">
+              <GraduationCap className="h-8 w-8 text-primary-foreground" />
             </div>
           </div>
-        </nav>
+          <div>
+            <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              Educhain TutorBench
+            </h1>
+            <p className="text-sm text-muted-foreground mt-1">
+              AI Model Testing Laboratory for Educational Prompts
+            </p>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2 px-4 py-2 glass-card rounded-lg border-primary/20">
+          <Activity className="h-4 w-4 text-secondary animate-pulse" />
+          <span className="text-xs text-muted-foreground">System Active</span>
+        </div>
       </div>
     </header>
   );

@@ -20,60 +20,58 @@ export function ApiKeyInput({ apiKey, onApiKeyChange }: ApiKeyInputProps) {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-2">
-        <div className="inline-block w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-        <h3 className="text-2xl font-bold">API Configuration</h3>
+    <div className="glass-card rounded-xl p-4 border-primary/20 animate-fade-in">
+      <div className="flex items-center gap-2 mb-3">
+        <Key className="h-4 w-4 text-primary" />
+        <h3 className="text-sm font-medium text-foreground">OpenRouter API Key</h3>
       </div>
       
-      <div className="space-y-3">
-        <div className="flex gap-3">
-          <div className="relative flex-1">
-            <Input
-              type={showKey ? "text" : "password"}
-              value={localKey}
-              onChange={(e) => setLocalKey(e.target.value)}
-              placeholder="Enter your OpenRouter API key..."
-              className="h-12 px-4 pr-10 font-mono text-sm bg-card border-2 border-border rounded-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
-            />
-            <button
-              onClick={() => setShowKey(!showKey)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 hover:bg-secondary rounded-sm transition-colors"
-            >
-              {showKey ? <EyeOff className="h-4 w-4 text-muted-foreground" /> : <Eye className="h-4 w-4 text-muted-foreground" />}
-            </button>
-          </div>
-          <Button
-            onClick={handleSave}
-            variant={saved ? "secondary" : "brutal"}
-            size="lg"
-            className="min-w-[100px]"
+      <div className="flex gap-2">
+        <div className="relative flex-1">
+          <Input
+            type={showKey ? "text" : "password"}
+            value={localKey}
+            onChange={(e) => setLocalKey(e.target.value)}
+            placeholder="sk-or-..."
+            className="pr-10 bg-input/50 border-border/50 focus:border-primary/50 font-mono text-xs"
+          />
+          <button
+            onClick={() => setShowKey(!showKey)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
           >
-            {saved ? (
-              <>
-                <Check className="mr-2 h-4 w-4" />
-                Saved
-              </>
-            ) : (
-              "Save Key"
-            )}
-          </Button>
+            {showKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+          </button>
         </div>
-        
-        {!apiKey && (
-          <p className="text-sm text-muted-foreground">
-            Get your API key from{" "}
-            <a 
-              href="https://openrouter.ai/keys" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-primary font-semibold hover:underline"
-            >
-              OpenRouter
-            </a>
-          </p>
-        )}
+        <Button
+          onClick={handleSave}
+          variant={saved ? "secondary" : "glass"}
+          size="sm"
+          className="min-w-[80px]"
+        >
+          {saved ? (
+            <>
+              <Check className="mr-1 h-3 w-3" />
+              Saved
+            </>
+          ) : (
+            "Save"
+          )}
+        </Button>
       </div>
+      
+      {!apiKey && (
+        <p className="text-xs text-muted-foreground mt-2">
+          Get your API key from{" "}
+          <a 
+            href="https://openrouter.ai/keys" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            OpenRouter
+          </a>
+        </p>
+      )}
     </div>
   );
 }
