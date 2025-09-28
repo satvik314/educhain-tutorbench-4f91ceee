@@ -1,9 +1,8 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { Copy, Check, Clock, AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import 'katex/dist/katex.min.css';
-import { parseLatexContent } from '@/utils/latexParser';
+import { LatexRenderer } from "./LatexRenderer";
 
 interface ModelResponseProps {
   modelName: string;
@@ -108,7 +107,7 @@ export function ModelResponse({
         {response && !error && !isLoading && (
           <div className="prose prose-sm max-w-none text-foreground/90">
             <div className="whitespace-pre-wrap font-mono text-xs leading-relaxed">
-              {useMemo(() => parseLatexContent(displayedText), [displayedText])}
+              <LatexRenderer text={displayedText} />
               {isTyping && <span className="animate-pulse">▊</span>}
             </div>
           </div>

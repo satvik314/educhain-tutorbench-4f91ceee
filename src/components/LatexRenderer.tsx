@@ -1,7 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import katex from 'katex';
+import 'katex/dist/katex.min.css';
 
-export function parseLatexContent(text: string): React.ReactNode {
+interface LatexRendererProps {
+  text: string;
+}
+
+export function LatexRenderer({ text }: LatexRendererProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -63,7 +68,9 @@ export function parseLatexContent(text: string): React.ReactNode {
       } else {
         const span = document.createElement(fragment.display ? 'div' : 'span');
         if (fragment.display) {
-          span.className = 'my-4 overflow-x-auto';
+          span.className = 'my-4 overflow-x-auto text-center';
+        } else {
+          span.className = 'inline-block mx-1';
         }
         try {
           katex.render(fragment.content, span, {
@@ -78,5 +85,5 @@ export function parseLatexContent(text: string): React.ReactNode {
     });
   }, [text]);
   
-  return <div ref={containerRef} />;
+  return <div ref={containerRef} className="katex-content" />;
 }
