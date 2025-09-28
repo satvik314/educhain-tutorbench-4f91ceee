@@ -16,6 +16,13 @@ export const availableModels: Model[] = [
     contextLength: 128000,
     selected: false,
   },
+  {
+    id: "openai/gpt-4.1",
+    name: "GPT-4.1",
+    provider: "OpenAI",
+    contextLength: 128000,
+    selected: false,
+  },
   
   // Anthropic Models
   {
@@ -41,6 +48,20 @@ export const availableModels: Model[] = [
     contextLength: 1048576,
     selected: true,
   },
+  {
+    id: "google/gemma-3n-e2b-it:free",
+    name: "Gemma 3N E2B IT (Free)",
+    provider: "Google",
+    contextLength: 8192,
+    selected: false,
+  },
+  {
+    id: "google/gemini-2.5-flash-lite",
+    name: "Gemini 2.5 Flash Lite",
+    provider: "Google",
+    contextLength: 1048576,
+    selected: false,
+  },
   
   // DeepSeek Models
   {
@@ -59,6 +80,13 @@ export const availableModels: Model[] = [
     contextLength: 32768,
     selected: false,
   },
+  {
+    id: "qwen/qwen3-235b-a22b-thinking-2507",
+    name: "Qwen3 235B Thinking",
+    provider: "Qwen",
+    contextLength: 32768,
+    selected: false,
+  },
   
   // X.AI Models
   {
@@ -66,6 +94,33 @@ export const availableModels: Model[] = [
     name: "Grok 4 Fast (Free)",
     provider: "X.AI",
     contextLength: 128000,
+    selected: false,
+  },
+  
+  // Z.AI Models
+  {
+    id: "z-ai/glm-4.5",
+    name: "GLM-4.5",
+    provider: "Z.AI",
+    contextLength: 128000,
+    selected: false,
+  },
+  
+  // NVIDIA Models
+  {
+    id: "nvidia/nemotron-nano-9b-v2:free",
+    name: "Nemotron Nano 9B V2 (Free)",
+    provider: "NVIDIA",
+    contextLength: 8192,
+    selected: false,
+  },
+  
+  // Moonshot Models
+  {
+    id: "moonshotai/kimi-k2-0905",
+    name: "Kimi K2 0905",
+    provider: "Moonshot",
+    contextLength: 200000,
     selected: false,
   },
 ];
