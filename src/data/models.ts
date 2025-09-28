@@ -3,95 +3,69 @@ import { Model } from "@/components/ModelSelector";
 export const availableModels: Model[] = [
   // OpenAI Models
   {
-    id: "openai/gpt-4-turbo",
-    name: "GPT-4 Turbo",
+    id: "openai/gpt-5",
+    name: "GPT-5",
     provider: "OpenAI",
-    contextLength: 128000,
+    contextLength: 200000,
     selected: true,
   },
   {
-    id: "openai/gpt-4o",
-    name: "GPT-4o",
+    id: "openai/gpt-oss-120b:free",
+    name: "GPT OSS 120B (Free)",
     provider: "OpenAI",
     contextLength: 128000,
-    selected: true,
-  },
-  {
-    id: "openai/gpt-3.5-turbo",
-    name: "GPT-3.5 Turbo",
-    provider: "OpenAI",
-    contextLength: 16385,
     selected: false,
   },
   
   // Anthropic Models
   {
-    id: "anthropic/claude-3-opus",
-    name: "Claude 3 Opus",
+    id: "anthropic/claude-sonnet-4",
+    name: "Claude Sonnet 4",
     provider: "Anthropic",
     contextLength: 200000,
     selected: true,
-  },
-  {
-    id: "anthropic/claude-3-sonnet",
-    name: "Claude 3 Sonnet",
-    provider: "Anthropic",
-    contextLength: 200000,
-    selected: true,
-  },
-  {
-    id: "anthropic/claude-3-haiku",
-    name: "Claude 3 Haiku",
-    provider: "Anthropic",
-    contextLength: 200000,
-    selected: false,
   },
   
   // Google Models
   {
-    id: "google/gemini-pro",
-    name: "Gemini Pro",
+    id: "google/gemini-2.5-pro",
+    name: "Gemini 2.5 Pro",
     provider: "Google",
-    contextLength: 32760,
+    contextLength: 2097152,
     selected: true,
   },
   {
-    id: "google/gemini-pro-1.5",
-    name: "Gemini Pro 1.5",
+    id: "google/gemini-2.5-flash-preview-09-2025",
+    name: "Gemini 2.5 Flash Preview",
     provider: "Google",
     contextLength: 1048576,
-    selected: false,
+    selected: true,
   },
   
-  // Meta Models
+  // DeepSeek Models
   {
-    id: "meta-llama/llama-3-70b-instruct",
-    name: "Llama 3 70B",
-    provider: "Meta",
-    contextLength: 8192,
-    selected: false,
-  },
-  {
-    id: "meta-llama/llama-3-8b-instruct",
-    name: "Llama 3 8B",
-    provider: "Meta",
-    contextLength: 8192,
-    selected: false,
+    id: "deepseek/deepseek-v3.1-terminus",
+    name: "DeepSeek V3.1 Terminus",
+    provider: "DeepSeek",
+    contextLength: 128000,
+    selected: true,
   },
   
-  // Mistral Models
+  // Qwen Models
   {
-    id: "mistralai/mistral-large",
-    name: "Mistral Large",
-    provider: "Mistral",
-    contextLength: 32000,
-    selected: false,
-  },
-  {
-    id: "mistralai/mixtral-8x7b-instruct",
-    name: "Mixtral 8x7B",
-    provider: "Mistral",
+    id: "qwen/qwen3-max",
+    name: "Qwen3 Max",
+    provider: "Qwen",
     contextLength: 32768,
+    selected: false,
+  },
+  
+  // X.AI Models
+  {
+    id: "x-ai/grok-4-fast:free",
+    name: "Grok 4 Fast (Free)",
+    provider: "X.AI",
+    contextLength: 128000,
     selected: false,
   },
 ];
