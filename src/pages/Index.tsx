@@ -6,6 +6,8 @@ import { PromptInput } from "@/components/PromptInput";
 import { ModelResponse } from "@/components/ModelResponse";
 import { availableModels } from "@/data/models";
 import { useOpenRouter } from "@/hooks/useOpenRouter";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [apiKey, setApiKey] = useState(() => 
@@ -39,8 +41,37 @@ const Index = () => {
   };
 
   const handleSubmitPrompt = async (prompt: string) => {
-    const selectedModels = models.filter(m => m.selected).map(m => m.id);
-    await testModels(prompt, selectedModels, apiKey);
+    const selectedModels = models.filter(m => m.selected);
+    const selectedModelIds = selectedModels.map(m => m.id);
+    const selectedModelNames = selectedModels.map(m => m.name);
+    
+    // Create prompt record in database
+    const { data: promptData, error: promptError } = await supabase
+      .from('prompts')
+      .insert({
+        prompt_text: prompt,
+        selected_models: selectedModelNames,
+        total_models: selectedModelIds.length,
+        status: 'pending'
+      })
+      .select()
+      .single();
+    
+    if (promptError) {
+      console.error('Error saving prompt:', promptError);
+    }
+    
+    // Pass promptId to testModels
+    const promptId = promptData?.id;
+    await testModels(prompt, selectedModelIds, apiKey, promptId);
+    
+    // Update prompt status to completed
+    if (promptId) {
+      await supabase
+        .from('prompts')
+        .update({ status: 'completed' })
+        .eq('id', promptId);
+    }
   };
 
   const selectedModels = models.filter(m => m.selected);

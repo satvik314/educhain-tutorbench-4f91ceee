@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ModelResponse {
   modelId: string;
@@ -15,7 +16,8 @@ export function useOpenRouter() {
   const testModels = async (
     prompt: string,
     modelIds: string[],
-    apiKey: string
+    apiKey: string,
+    promptId?: string
   ) => {
     if (!apiKey) {
       toast({
@@ -85,15 +87,41 @@ export function useOpenRouter() {
             responseTime,
           }
         }));
+        
+        // Save successful response to database
+        if (promptId) {
+          await supabase
+            .from('model_responses')
+            .upsert({
+              prompt_id: promptId,
+              model_name: modelId,
+              response_content: content,
+              response_time_ms: Math.round(responseTime * 1000)
+            });
+        }
       } catch (error) {
         console.error(`Error with model ${modelId}:`, error);
+        const errorMessage = error instanceof Error ? error.message : "Failed to get response";
+        
         setResponses(prev => ({
           ...prev,
           [modelId]: {
             modelId,
-            error: error instanceof Error ? error.message : "Failed to get response",
+            error: errorMessage,
           }
         }));
+        
+        // Save error response to database
+        if (promptId) {
+          await supabase
+            .from('model_responses')
+            .upsert({
+              prompt_id: promptId,
+              model_name: modelId,
+              response_error: errorMessage,
+              response_time_ms: Math.round((Date.now() - startTime))
+            });
+        }
       }
     });
 
