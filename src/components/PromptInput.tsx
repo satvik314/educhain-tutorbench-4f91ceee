@@ -68,7 +68,7 @@ export function PromptInput({ onSubmit, isLoading, selectedModelsCount }: Prompt
         <Button
           onClick={handleSubmit}
           disabled={!prompt.trim() || selectedModelsCount === 0 || isLoading}
-          variant="neon"
+          variant="brutal"
           className="min-w-[120px]"
         >
           {isLoading ? (

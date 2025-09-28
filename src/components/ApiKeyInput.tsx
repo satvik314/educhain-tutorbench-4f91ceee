@@ -44,7 +44,7 @@ export function ApiKeyInput({ apiKey, onApiKeyChange }: ApiKeyInputProps) {
         </div>
         <Button
           onClick={handleSave}
-          variant={saved ? "secondary" : "glass"}
+          variant={saved ? "secondary" : "brutal-white"}
           size="sm"
           className="min-w-[80px]"
         >

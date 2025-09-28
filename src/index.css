@@ -8,62 +8,64 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Core Colors - Deep Space Theme */
-    --background: 230 45% 3%;
-    --foreground: 210 50% 98%;
+    /* Core Colors - Educhain Theme */
+    --background: 15 60% 97%;
+    --foreground: 0 0% 10%;
     
-    /* Card System - Glassmorphic */
-    --card: 230 35% 7%;
-    --card-foreground: 210 50% 98%;
-    --card-glow: 280 100% 65%;
+    /* Card System - Neo-brutal */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --card-glow: 25 95% 53%;
     
     /* Popover */
-    --popover: 230 35% 9%;
-    --popover-foreground: 210 50% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
     
-    /* Primary - Electric Purple */
-    --primary: 280 100% 65%;
-    --primary-foreground: 230 45% 3%;
-    --primary-glow: 280 100% 75%;
+    /* Primary - Vibrant Orange */
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 25 100% 60%;
     
-    /* Secondary - Neon Cyan */
-    --secondary: 185 100% 50%;
-    --secondary-foreground: 230 45% 3%;
+    /* Secondary - Soft Peach */
+    --secondary: 15 90% 92%;
+    --secondary-foreground: 0 0% 10%;
     
     /* Muted */
-    --muted: 230 25% 15%;
-    --muted-foreground: 210 30% 70%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
     
-    /* Accent - Aurora Blue */
-    --accent: 210 100% 60%;
-    --accent-foreground: 230 45% 3%;
+    /* Accent - Bright Orange */
+    --accent: 20 100% 50%;
+    --accent-foreground: 0 0% 100%;
     
     /* Destructive */
-    --destructive: 350 100% 60%;
-    --destructive-foreground: 210 50% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
     
     /* Borders */
-    --border: 230 30% 20%;
-    --input: 230 30% 13%;
-    --ring: 280 100% 65%;
+    --border: 0 0% 15%;
+    --input: 0 0% 100%;
+    --ring: 25 95% 53%;
     
     /* Radius */
-    --radius: 0.75rem;
+    --radius: 0.125rem;
     
     /* Custom Design Tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(280 100% 65%), hsl(185 100% 50%));
-    --gradient-aurora: linear-gradient(180deg, hsl(280 100% 65% / 0.1), hsl(185 100% 50% / 0.1));
-    --gradient-card: linear-gradient(135deg, hsl(230 35% 10% / 0.8), hsl(230 35% 5% / 0.8));
-    --gradient-subtle: linear-gradient(180deg, hsl(230 45% 3%), hsl(230 40% 6%));
+    --gradient-primary: linear-gradient(135deg, hsl(20 80% 96%), hsl(15 90% 94%));
+    --gradient-aurora: linear-gradient(180deg, hsl(25 95% 53% / 0.05), transparent);
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(15 30% 98%));
+    --gradient-subtle: linear-gradient(180deg, hsl(15 60% 97%), hsl(20 50% 95%));
     
-    /* Shadows */
-    --shadow-glow: 0 0 50px hsl(280 100% 65% / 0.3);
-    --shadow-glow-cyan: 0 0 30px hsl(185 100% 50% / 0.3);
-    --shadow-card: 0 10px 40px hsl(230 50% 2% / 0.8);
+    /* Neo-brutal Shadows */
+    --shadow-brutal: 3px 3px 0px hsl(0 0% 0%);
+    --shadow-brutal-sm: 2px 2px 0px hsl(0 0% 0%);
+    --shadow-brutal-lg: 5px 5px 0px hsl(0 0% 0%);
+    --shadow-glow: 0 0 30px hsl(25 95% 53% / 0.2);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.08);
     
     /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-spring: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: all 0.2s ease;
+    --transition-spring: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
     /* Typography */
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
@@ -101,58 +103,103 @@ All colors MUST be HSL.
 }
 
 @layer components {
-  /* Glassmorphic card variant */
-  .glass-card {
-    @apply backdrop-blur-xl bg-card/30 border border-border/50;
-    box-shadow: var(--shadow-card);
+  /* Neo-brutal card */
+  .brutal-card {
+    @apply bg-card border-2 border-border rounded-sm;
+    box-shadow: var(--shadow-brutal);
   }
   
-  /* Neon glow effect */
-  .glow-primary {
-    box-shadow: var(--shadow-glow);
+  .brutal-card-sm {
+    @apply bg-card border-2 border-border rounded-sm;
+    box-shadow: var(--shadow-brutal-sm);
   }
   
-  .glow-cyan {
-    box-shadow: var(--shadow-glow-cyan);
+  .brutal-card-lg {
+    @apply bg-card border-2 border-border rounded-sm;
+    box-shadow: var(--shadow-brutal-lg);
   }
   
-  /* Grid background animation */
-  .grid-background {
-    background-image: 
-      linear-gradient(hsl(var(--primary) / 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--primary) / 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: grid-move 20s linear infinite;
+  /* Neo-brutal button hover effect */
+  .brutal-hover {
+    @apply transition-all duration-200;
   }
   
-  @keyframes grid-move {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
+  .brutal-hover:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px hsl(0 0% 0%);
   }
   
-  /* Typing animation */
-  @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
+  .brutal-hover:active {
+    transform: translate(0, 0);
+    box-shadow: var(--shadow-brutal-sm);
   }
   
-  @keyframes blink {
-    50% { border-color: transparent; }
+  /* Gradient backgrounds */
+  .gradient-peach {
+    background: var(--gradient-primary);
   }
   
-  /* Pulse animation */
-  @keyframes pulse-glow {
-    0%, 100% { 
+  .gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+  
+  /* Badge style */
+  .badge-orange {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 bg-secondary text-primary font-medium text-sm rounded-full border border-primary/20;
+  }
+  
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+  
+  /* Grid pattern */
+  .dot-pattern {
+    background-image: radial-gradient(circle, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  /* Animations */
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
       opacity: 1;
-      transform: scale(1);
-    }
-    50% { 
-      opacity: 0.8;
-      transform: scale(1.05);
+      transform: translateY(0);
     }
   }
   
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+  
+  .animate-slide-down {
+    animation: slide-down 0.5s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
   }
 }
