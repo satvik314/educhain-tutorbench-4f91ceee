@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { ApiKeyInput } from "@/components/ApiKeyInput";
-import { ModelSelector } from "@/components/ModelSelector";
+import { ImprovedModelSelector } from "@/components/ImprovedModelSelector";
 import { PromptInput } from "@/components/PromptInput";
 import { ModelResponse } from "@/components/ModelResponse";
 import { availableModels } from "@/data/models";
@@ -65,7 +65,7 @@ const Index = () => {
           />
           
           {/* Model Selection */}
-          <ModelSelector
+          <ImprovedModelSelector
             models={models}
             onToggleModel={handleToggleModel}
             onSelectAll={handleSelectAll}
