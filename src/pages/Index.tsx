@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { ApiKeyInput } from "@/components/ApiKeyInput";
-import { ImprovedModelSelector } from "@/components/ImprovedModelSelector";
+import { CompactModelSelector } from "@/components/CompactModelSelector";
 import { PromptInput } from "@/components/PromptInput";
 import { ModelResponse } from "@/components/ModelResponse";
 import { availableModels } from "@/data/models";
@@ -60,11 +60,19 @@ const Index = () => {
           <div className="container mx-auto px-4 py-4 max-w-7xl">
             <Header />
             
-            {/* API Key and Prompt Input in Header */}
+            {/* API Key, Model Selection and Prompt Input in Header */}
             <div className="mt-4 space-y-4">
               <ApiKeyInput 
                 apiKey={apiKey} 
                 onApiKeyChange={setApiKey}
+              />
+              
+              {/* Compact Model Selector */}
+              <CompactModelSelector
+                models={models}
+                onToggleModel={handleToggleModel}
+                onSelectAll={handleSelectAll}
+                onDeselectAll={handleDeselectAll}
               />
               
               {/* Prompt Input */}
@@ -80,14 +88,6 @@ const Index = () => {
         {/* Main Content Area */}
         <div className="container mx-auto px-4 py-6 max-w-7xl">
           <div className="space-y-6">
-            {/* Model Selection */}
-            <ImprovedModelSelector
-              models={models}
-              onToggleModel={handleToggleModel}
-              onSelectAll={handleSelectAll}
-              onDeselectAll={handleDeselectAll}
-            />
-            
             {/* Responses Grid */}
             {hasResponses && (
               <div className="space-y-4">
