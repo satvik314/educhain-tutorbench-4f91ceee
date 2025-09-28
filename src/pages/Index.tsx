@@ -1,11 +1,110 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
+import { Header } from "@/components/Header";
+import { ApiKeyInput } from "@/components/ApiKeyInput";
+import { ModelSelector } from "@/components/ModelSelector";
+import { PromptInput } from "@/components/PromptInput";
+import { ModelResponse } from "@/components/ModelResponse";
+import { availableModels } from "@/data/models";
+import { useOpenRouter } from "@/hooks/useOpenRouter";
 
 const Index = () => {
+  const [apiKey, setApiKey] = useState(() => 
+    localStorage.getItem("openrouter_api_key") || ""
+  );
+  const [models, setModels] = useState(availableModels);
+  const { responses, isLoading, testModels } = useOpenRouter();
+
+  useEffect(() => {
+    if (apiKey) {
+      localStorage.setItem("openrouter_api_key", apiKey);
+    }
+  }, [apiKey]);
+
+  const handleToggleModel = (modelId: string) => {
+    setModels(prev => 
+      prev.map(model => 
+        model.id === modelId 
+          ? { ...model, selected: !model.selected }
+          : model
+      )
+    );
+  };
+
+  const handleSelectAll = () => {
+    setModels(prev => prev.map(model => ({ ...model, selected: true })));
+  };
+
+  const handleDeselectAll = () => {
+    setModels(prev => prev.map(model => ({ ...model, selected: false })));
+  };
+
+  const handleSubmitPrompt = async (prompt: string) => {
+    const selectedModels = models.filter(m => m.selected).map(m => m.id);
+    await testModels(prompt, selectedModels, apiKey);
+  };
+
+  const selectedModels = models.filter(m => m.selected);
+  const hasResponses = Object.keys(responses).length > 0;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gradient-subtle relative overflow-hidden">
+      {/* Animated grid background */}
+      <div className="absolute inset-0 grid-background opacity-30"></div>
+      
+      {/* Aurora gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-aurora pointer-events-none"></div>
+      
+      <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
+        <Header />
+        
+        <div className="space-y-6">
+          {/* API Key Section */}
+          <ApiKeyInput 
+            apiKey={apiKey} 
+            onApiKeyChange={setApiKey}
+          />
+          
+          {/* Model Selection */}
+          <ModelSelector
+            models={models}
+            onToggleModel={handleToggleModel}
+            onSelectAll={handleSelectAll}
+            onDeselectAll={handleDeselectAll}
+          />
+          
+          {/* Prompt Input */}
+          <PromptInput
+            onSubmit={handleSubmitPrompt}
+            isLoading={isLoading}
+            selectedModelsCount={selectedModels.length}
+          />
+          
+          {/* Responses Grid */}
+          {hasResponses && (
+            <div className="space-y-4">
+              <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
+                <span className="inline-block w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                Model Responses
+              </h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {selectedModels.map((model) => {
+                  const response = responses[model.id];
+                  return (
+                    <ModelResponse
+                      key={model.id}
+                      modelName={model.name}
+                      provider={model.provider}
+                      response={response?.response}
+                      responseTime={response?.responseTime}
+                      isLoading={isLoading && !response?.response && !response?.error}
+                      error={response?.error}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
