@@ -9,14 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-glow",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-brutal hover:shadow-brutal-hover transition-all hover:-translate-x-0.5 hover:-translate-y-0.5",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-transparent hover:bg-accent/10 hover:text-accent-foreground hover:border-accent",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:shadow-glow-cyan",
-        ghost: "hover:bg-accent/10 hover:text-accent-foreground",
+        outline: "border-2 border-foreground bg-transparent hover:bg-primary hover:text-primary-foreground hover:border-foreground shadow-brutal hover:shadow-brutal-hover transition-all hover:-translate-x-0.5 hover:-translate-y-0.5",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-muted hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        neon: "bg-gradient-primary text-primary-foreground hover:shadow-glow hover:scale-105 transition-all duration-300",
-        glass: "glass-card border-primary/20 text-foreground hover:bg-primary/10 hover:border-primary/40 hover:shadow-glow",
+        brutal: "bg-card border-2 border-foreground text-foreground shadow-brutal hover:shadow-brutal-hover hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all",
+        soft: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft hover:shadow-lg transition-all",
       },
       size: {
         default: "h-10 px-4 py-2",

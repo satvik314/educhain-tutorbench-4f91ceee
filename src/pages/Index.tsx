@@ -48,11 +48,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle relative overflow-hidden">
-      {/* Animated grid background */}
-      <div className="absolute inset-0 grid-background opacity-30"></div>
-      
-      {/* Aurora gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-aurora pointer-events-none"></div>
+      {/* Subtle dot pattern background */}
+      <div className="absolute inset-0 opacity-10" style={{
+        backgroundImage: `radial-gradient(circle, hsl(var(--primary)) 1px, transparent 1px)`,
+        backgroundSize: '20px 20px'
+      }}></div>
       
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
         <Header />

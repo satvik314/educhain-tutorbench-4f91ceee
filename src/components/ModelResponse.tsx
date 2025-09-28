@@ -56,10 +56,10 @@ export function ModelResponse({
 
   return (
     <div className={cn(
-      "glass-card rounded-xl p-6 border transition-all duration-300 animate-slide-up",
-      isLoading ? "border-secondary/50 shadow-glow-cyan" : 
-      error ? "border-destructive/50" : 
-      "border-primary/20 hover:border-primary/40"
+      "brutal-card p-6 transition-all duration-300 animate-slide-up",
+      isLoading ? "border-secondary" : 
+      error ? "border-destructive" : 
+      "hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal-hover"
     )}>
       <div className="flex items-start justify-between mb-4">
         <div>

@@ -6,13 +6,12 @@ export function Header() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-primary blur-xl opacity-50 animate-pulse"></div>
-            <div className="relative bg-gradient-primary p-3 rounded-xl shadow-glow">
+            <div className="bg-primary border-2 border-foreground p-3 rounded-lg shadow-brutal">
               <GraduationCap className="h-8 w-8 text-primary-foreground" />
             </div>
           </div>
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold text-foreground">
               Educhain TutorBench
             </h1>
             <p className="text-sm text-muted-foreground mt-1">
@@ -21,8 +20,8 @@ export function Header() {
           </div>
         </div>
         
-        <div className="flex items-center gap-2 px-4 py-2 glass-card rounded-lg border-primary/20">
-          <Activity className="h-4 w-4 text-secondary animate-pulse" />
+        <div className="flex items-center gap-2 px-4 py-2 bg-card border-2 border-foreground rounded-lg shadow-brutal">
+          <Activity className="h-4 w-4 text-primary animate-pulse" />
           <span className="text-xs text-muted-foreground">System Active</span>
         </div>
       </div>

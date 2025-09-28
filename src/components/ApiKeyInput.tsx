@@ -20,7 +20,7 @@ export function ApiKeyInput({ apiKey, onApiKeyChange }: ApiKeyInputProps) {
   };
 
   return (
-    <div className="glass-card rounded-xl p-4 border-primary/20 animate-fade-in">
+    <div className="brutal-card p-4 animate-fade-in">
       <div className="flex items-center gap-2 mb-3">
         <Key className="h-4 w-4 text-primary" />
         <h3 className="text-sm font-medium text-foreground">OpenRouter API Key</h3>
@@ -44,7 +44,7 @@ export function ApiKeyInput({ apiKey, onApiKeyChange }: ApiKeyInputProps) {
         </div>
         <Button
           onClick={handleSave}
-          variant={saved ? "secondary" : "glass"}
+          variant={saved ? "secondary" : "brutal"}
           size="sm"
           className="min-w-[80px]"
         >

@@ -21,7 +21,7 @@ export function ModelSelector({ models, onToggleModel, onSelectAll, onDeselectAl
   const selectedCount = models.filter(m => m.selected).length;
 
   return (
-    <div className="glass-card rounded-xl p-6 border-primary/20 animate-fade-in">
+    <div className="brutal-card p-6 animate-fade-in">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-primary" />
@@ -56,22 +56,31 @@ export function ModelSelector({ models, onToggleModel, onSelectAll, onDeselectAl
             key={model.id}
             onClick={() => onToggleModel(model.id)}
             className={cn(
-              "group relative p-3 rounded-lg border transition-all duration-200",
-              "hover:scale-[1.02] hover:shadow-lg",
+              "group relative p-3 rounded-lg border-2 transition-all duration-200",
+              "hover:-translate-x-0.5 hover:-translate-y-0.5",
               model.selected
-                ? "bg-primary/10 border-primary/50 shadow-glow"
-                : "bg-card/50 border-border/50 hover:border-primary/30"
+                ? "bg-primary text-primary-foreground border-foreground shadow-brutal hover:shadow-brutal-hover"
+                : "bg-card border-foreground hover:bg-muted"
             )}
           >
             <div className="flex items-start justify-between">
               <div className="text-left">
-                <div className="font-medium text-sm text-foreground">
+                <div className={cn(
+                  "font-medium text-sm",
+                  model.selected ? "text-primary-foreground" : "text-foreground"
+                )}>
                   {model.name}
                 </div>
-                <div className="text-xs text-muted-foreground mt-1">
+                <div className={cn(
+                  "text-xs mt-1",
+                  model.selected ? "text-primary-foreground/80" : "text-muted-foreground"
+                )}>
                   {model.provider}
                 </div>
-                <div className="text-xs text-muted-foreground/70 mt-1">
+                <div className={cn(
+                  "text-xs mt-1",
+                  model.selected ? "text-primary-foreground/70" : "text-muted-foreground/70"
+                )}>
                   {model.contextLength.toLocaleString()} tokens
                 </div>
               </div>

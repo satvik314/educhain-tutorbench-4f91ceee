@@ -30,7 +30,7 @@ export function PromptInput({ onSubmit, isLoading, selectedModelsCount }: Prompt
   };
 
   return (
-    <div className="glass-card rounded-xl p-6 border-primary/20 animate-fade-in">
+    <div className="brutal-card p-6 animate-fade-in">
       <div className="flex items-center gap-2 mb-4">
         <BookOpen className="h-5 w-5 text-secondary" />
         <h2 className="text-xl font-semibold text-foreground">Test Prompt</h2>
@@ -68,7 +68,7 @@ export function PromptInput({ onSubmit, isLoading, selectedModelsCount }: Prompt
         <Button
           onClick={handleSubmit}
           disabled={!prompt.trim() || selectedModelsCount === 0 || isLoading}
-          variant="neon"
+          variant="default"
           className="min-w-[120px]"
         >
           {isLoading ? (
