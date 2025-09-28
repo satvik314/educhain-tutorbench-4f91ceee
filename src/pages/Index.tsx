@@ -54,56 +54,66 @@ const Index = () => {
         backgroundSize: '20px 20px'
       }}></div>
       
-      <div className="relative z-10 container mx-auto px-4 py-8 max-w-7xl">
-        <Header />
-        
-        <div className="space-y-6">
-          {/* API Key Section */}
-          <ApiKeyInput 
-            apiKey={apiKey} 
-            onApiKeyChange={setApiKey}
-          />
-          
-          {/* Model Selection */}
-          <ImprovedModelSelector
-            models={models}
-            onToggleModel={handleToggleModel}
-            onSelectAll={handleSelectAll}
-            onDeselectAll={handleDeselectAll}
-          />
-          
-          {/* Prompt Input */}
-          <PromptInput
-            onSubmit={handleSubmitPrompt}
-            isLoading={isLoading}
-            selectedModelsCount={selectedModels.length}
-          />
-          
-          {/* Responses Grid */}
-          {hasResponses && (
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
-                <span className="inline-block w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
-                Model Responses
-              </h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                {selectedModels.map((model) => {
-                  const response = responses[model.id];
-                  return (
-                    <ModelResponse
-                      key={model.id}
-                      modelName={model.name}
-                      provider={model.provider}
-                      response={response?.response}
-                      responseTime={response?.responseTime}
-                      isLoading={isLoading && !response?.response && !response?.error}
-                      error={response?.error}
-                    />
-                  );
-                })}
-              </div>
+      <div className="relative z-10">
+        {/* Fixed Header Section */}
+        <div className="sticky top-0 z-20 bg-background/95 backdrop-blur-sm border-b-2 border-foreground">
+          <div className="container mx-auto px-4 py-4 max-w-7xl">
+            <Header />
+            
+            {/* API Key and Prompt Input in Header */}
+            <div className="mt-4 space-y-4">
+              <ApiKeyInput 
+                apiKey={apiKey} 
+                onApiKeyChange={setApiKey}
+              />
+              
+              {/* Prompt Input */}
+              <PromptInput
+                onSubmit={handleSubmitPrompt}
+                isLoading={isLoading}
+                selectedModelsCount={selectedModels.length}
+              />
             </div>
-          )}
+          </div>
+        </div>
+        
+        {/* Main Content Area */}
+        <div className="container mx-auto px-4 py-6 max-w-7xl">
+          <div className="space-y-6">
+            {/* Model Selection */}
+            <ImprovedModelSelector
+              models={models}
+              onToggleModel={handleToggleModel}
+              onSelectAll={handleSelectAll}
+              onDeselectAll={handleDeselectAll}
+            />
+            
+            {/* Responses Grid */}
+            {hasResponses && (
+              <div className="space-y-4">
+                <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                  Model Responses
+                </h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  {selectedModels.map((model) => {
+                    const response = responses[model.id];
+                    return (
+                      <ModelResponse
+                        key={model.id}
+                        modelName={model.name}
+                        provider={model.provider}
+                        response={response?.response}
+                        responseTime={response?.responseTime}
+                        isLoading={isLoading && !response?.response && !response?.error}
+                        error={response?.error}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
