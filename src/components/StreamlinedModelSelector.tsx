@@ -185,7 +185,7 @@ export function StreamlinedModelSelector({
                   <Star className="h-4 w-4 text-primary" />
                   <h3 className="text-xs font-semibold text-foreground">Popular Models</h3>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
                   {popularModels.map((model) => (
                     <CompactModelCard
                       key={model.id}
