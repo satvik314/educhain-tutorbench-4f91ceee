@@ -1,5 +1,4 @@
-import { GraduationCap, Activity, FileText } from "lucide-react";
-import { Button } from "./ui/button";
+import { GraduationCap, Activity } from "lucide-react";
 
 export function Header() {
   return (
@@ -22,20 +21,9 @@ export function Header() {
           </div>
         </div>
         
-        <div className="flex items-center gap-4">
-          <Button 
-            variant="outline" 
-            size="sm"
-            onClick={() => window.location.href = "/why-pteb"}
-            className="hidden md:flex items-center gap-2"
-          >
-            <FileText className="h-4 w-4" />
-            Why PTEB?
-          </Button>
-          <div className="flex items-center gap-2 px-4 py-2 glass-card rounded-lg border-primary/20">
-            <Activity className="h-4 w-4 text-secondary animate-pulse" />
-            <span className="text-xs text-muted-foreground">System Active</span>
-          </div>
+        <div className="flex items-center gap-2 px-4 py-2 glass-card rounded-lg border-primary/20">
+          <Activity className="h-4 w-4 text-secondary animate-pulse" />
+          <span className="text-xs text-muted-foreground">System Active</span>
         </div>
       </div>
     </header>
