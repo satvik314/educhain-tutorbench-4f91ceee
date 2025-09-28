@@ -14,7 +14,77 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      model_responses: {
+        Row: {
+          created_at: string | null
+          id: string
+          model_name: string
+          prompt_id: string
+          response_content: string | null
+          response_error: string | null
+          response_time_ms: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          model_name: string
+          prompt_id: string
+          response_content?: string | null
+          response_error?: string | null
+          response_time_ms?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          model_name?: string
+          prompt_id?: string
+          response_content?: string | null
+          response_error?: string | null
+          response_time_ms?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "model_responses_prompt_id_fkey"
+            columns: ["prompt_id"]
+            isOneToOne: false
+            referencedRelation: "prompts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      prompts: {
+        Row: {
+          created_at: string | null
+          id: string
+          prompt_text: string
+          selected_models: string[]
+          status: string | null
+          total_models: number
+          updated_at: string | null
+          username: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          prompt_text: string
+          selected_models: string[]
+          status?: string | null
+          total_models: number
+          updated_at?: string | null
+          username?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          prompt_text?: string
+          selected_models?: string[]
+          status?: string | null
+          total_models?: number
+          updated_at?: string | null
+          username?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
