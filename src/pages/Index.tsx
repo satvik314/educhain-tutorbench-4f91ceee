@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { ApiKeyInput } from "@/components/ApiKeyInput";
-import { CompactModelSelector } from "@/components/CompactModelSelector";
+import { StreamlinedModelSelector } from "@/components/StreamlinedModelSelector";
 import { PromptInput } from "@/components/PromptInput";
 import { ModelResponse } from "@/components/ModelResponse";
 import { availableModels } from "@/data/models";
@@ -67,8 +67,8 @@ const Index = () => {
                 onApiKeyChange={setApiKey}
               />
               
-              {/* Compact Model Selector */}
-              <CompactModelSelector
+              {/* Streamlined Model Selector */}
+              <StreamlinedModelSelector
                 models={models}
                 onToggleModel={handleToggleModel}
                 onSelectAll={handleSelectAll}
