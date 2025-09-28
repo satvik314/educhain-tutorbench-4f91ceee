@@ -9,6 +9,19 @@ import { useOpenRouter } from "@/hooks/useOpenRouter";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
+// Get or create a session ID for this user session
+const getSessionId = (): string => {
+  const SESSION_KEY = 'ai-model-tester-session';
+  let sessionId = localStorage.getItem(SESSION_KEY);
+  
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    localStorage.setItem(SESSION_KEY, sessionId);
+  }
+  
+  return sessionId;
+};
+
 const Index = () => {
   const [apiKey, setApiKey] = useState(() => 
     localStorage.getItem("openrouter_api_key") || ""
@@ -45,14 +58,16 @@ const Index = () => {
     const selectedModelIds = selectedModels.map(m => m.id);
     const selectedModelNames = selectedModels.map(m => m.name);
     
-    // Create prompt record in database
+    // Create prompt record in database with session ID for access control
+    const sessionId = getSessionId();
     const { data: promptData, error: promptError } = await supabase
       .from('prompts')
       .insert({
         prompt_text: prompt,
         selected_models: selectedModelNames,
         total_models: selectedModelIds.length,
-        status: 'pending'
+        status: 'pending',
+        session_id: sessionId
       })
       .select()
       .single();

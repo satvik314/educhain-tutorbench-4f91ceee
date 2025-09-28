@@ -58,6 +58,7 @@ export type Database = {
           id: string
           prompt_text: string
           selected_models: string[]
+          session_id: string | null
           status: string | null
           total_models: number
           updated_at: string | null
@@ -68,6 +69,7 @@ export type Database = {
           id?: string
           prompt_text: string
           selected_models: string[]
+          session_id?: string | null
           status?: string | null
           total_models: number
           updated_at?: string | null
@@ -78,6 +80,7 @@ export type Database = {
           id?: string
           prompt_text?: string
           selected_models?: string[]
+          session_id?: string | null
           status?: string | null
           total_models?: number
           updated_at?: string | null

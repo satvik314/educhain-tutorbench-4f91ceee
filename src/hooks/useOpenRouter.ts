@@ -2,6 +2,19 @@ import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
+// Get or create a session ID for this user session
+const getSessionId = (): string => {
+  const SESSION_KEY = 'ai-model-tester-session';
+  let sessionId = localStorage.getItem(SESSION_KEY);
+  
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    localStorage.setItem(SESSION_KEY, sessionId);
+  }
+  
+  return sessionId;
+};
+
 interface ModelResponse {
   modelId: string;
   response?: string;
