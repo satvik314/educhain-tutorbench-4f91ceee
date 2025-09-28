@@ -49,13 +49,6 @@ export const availableModels: Model[] = [
     selected: true,
   },
   {
-    id: "google/gemma-3n-e2b-it:free",
-    name: "Gemma 3N E2B IT (Free)",
-    provider: "Google",
-    contextLength: 8192,
-    selected: false,
-  },
-  {
     id: "google/gemini-2.5-flash-lite",
     name: "Gemini 2.5 Flash Lite",
     provider: "Google",
