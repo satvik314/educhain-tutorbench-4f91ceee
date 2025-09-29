@@ -10,8 +10,8 @@ export const availableModels: Model[] = [
     selected: true,
   },
   {
-    id: "openai/gpt-oss-120b:free",
-    name: "GPT OSS 120B (Free)",
+    id: "openai/gpt-oss-120b",
+    name: "GPT OSS 120B",
     provider: "OpenAI",
     contextLength: 128000,
     selected: false,
